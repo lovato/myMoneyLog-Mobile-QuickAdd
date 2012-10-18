@@ -3,18 +3,26 @@ Created on 18/10/2012
 
 @author: marco.lovato
 '''
-from nose.tools import assert_equals #@UnresolvedImport
+import unittest
+from main import Dummy
 
-class TestModel(object):
-    """ Test all methods on ModelOne """
-
-    @classmethod
-    def setUpClass(cls):
-        pass
+class SimpleTestCase(unittest.TestCase):
 
     def setUp(self):
-        """ This method run on every test """
+        """Call before every test case."""
+        self.foo = Dummy()
+
+    def tearDown(self):
+        """Call after every test case."""
         pass
 
-    def test_basic(self):
-        assert_equals(1, 1)
+    def testA(self):
+        """Test case A. note that all test method names must begin with 'test.'"""
+        assert self.foo.dummyfunc(543) == 543, "bar() not calculating values correctly"
+
+    def testB(self):
+        """Test case A. note that all test method names must begin with 'test.'"""
+        assert self.foo.dummyfunc(543) == 22, "bar() not calculating values correctly"
+
+if __name__ == "__main__":
+    unittest.main() # run all tests
