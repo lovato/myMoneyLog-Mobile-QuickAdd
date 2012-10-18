@@ -9,8 +9,8 @@ Adds a new feature to myMoneyLog ( http://nishimura.eti.br/blog/mymoneylog/ ). T
 
 Current Travis Status:
 
-.. image:: https://secure.travis-ci.org/mbanton/nose-mongoengine.png?branch=master
-  :target: http://travis-ci.org/mbanton/nose-mongoengine
+.. image:: https://secure.travis-ci.org/lovato/myMoneyLog-Mobile-QuickAdd.png?branch=master
+  :target: http://travis-ci.org/lovato/myMoneyLog-Mobile-QuickAdd
 
 .. contents::
 
