@@ -1,5 +1,5 @@
 ================
-nose-mongoengine
+myMoneyLog Mobile QuickAdd
 ================
 
 :Info: A nose plugin to facilitate the creation of automated tests that access Mongo Engine structures.
