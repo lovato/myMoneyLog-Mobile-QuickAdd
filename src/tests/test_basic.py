@@ -3,9 +3,9 @@ Created on 18/10/2012
 
 @author: marco.lovato
 '''
-from nose.tools import assert_equals
+from nose.tools import assert_equals #@UnresolvedImport
 
-class TestModelOne(object):
+class TestModel(object):
     """ Test all methods on ModelOne """
 
     @classmethod
