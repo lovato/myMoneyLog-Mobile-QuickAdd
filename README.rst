@@ -2,15 +2,13 @@
 myMoneyLog Mobile QuickAdd
 ================
 
-:Info: A nose plugin to facilitate the creation of automated tests that access Mongo Engine structures.
-:Repository: https://github.com/mbanton/nose-mongoengine/
-:PyPI page: http://pypi.python.org/pypi/nose-mongoengine/
-:Author: Marcelo Anton (http://github.com/mbanton) & Maxwell Dayvson ( https://github.com/dayvson/)
+:Info: A webservice that can be used from remote devices to add data to the offline myMoneyLog software
+:Author: Marco Lovato (http://github.com/lovato)
 
 .. image:: https://secure.travis-ci.org/mbanton/nose-mongoengine.png?branch=master
   :target: http://travis-ci.org/mbanton/nose-mongoengine
 
-Originally based on Mongo Nose ( http://pypi.python.org/pypi/mongonose/ ). Thanks to: Kapil Thangavelu
+Adds a new feature to myMoneyLog ( http://nishimura.eti.br/blog/mymoneylog/ ). Thanks to: Ricardo Nishimura
 
 .. contents::
 
