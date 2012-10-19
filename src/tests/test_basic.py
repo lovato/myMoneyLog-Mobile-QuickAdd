@@ -4,25 +4,24 @@ Created on 18/10/2012
 @author: marco.lovato
 '''
 import unittest
-from main import Dummy
+from append_mml import *
 
 class SimpleTestCase(unittest.TestCase):
 
     def setUp(self):
         """Call before every test case."""
-        self.foo = Dummy()
+        self.foo = Transactor()
+        pass
 
     def tearDown(self):
         """Call after every test case."""
         pass
 
-    def testA(self):
+    def test_add_transaction(self):
         """Test case A. note that all test method names must begin with 'test.'"""
-        assert self.foo.dummyfunc(543) == 543, "bar() not calculating values correctly"
-
-    def testB(self):
-        """Test case A. note that all test method names must begin with 'test.'"""
-        assert self.foo.dummyfunc(543) == 22, "bar() not calculating values correctly"
+        transaction = 'aaa'
+        self.foo.append_transaction(transaction, 'test.txt')
+        assert self.foo.get_last_transaction('test.txt') == transaction
 
 if __name__ == "__main__":
     unittest.main() # run all tests
