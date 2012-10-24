@@ -14,8 +14,7 @@ class SimpleTestCase(unittest.TestCase):
         """Call before every test case."""
         self.foo = Transactor()
         self.foo.set_mml_folder(get_mml_folder())
-        self.foo.set_datafile('data.html')
-        pass
+        self.foo.set_datafile('data-tests.html')
 
     def tearDown(self):
         """Call after every test case."""
