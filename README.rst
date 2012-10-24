@@ -2,7 +2,7 @@
 myMoneyLog Mobile QuickAdd
 ================
 
-:Info: A webservice that can be used from remote devices to add data to the offline myMoneyLog software
+:Info: A mini website that can be used by remote devices to add data to the offline myMoneyLog software
 :Author: Marco Lovato (http://github.com/lovato)
 
 Adds a new feature to myMoneyLog ( http://nishimura.eti.br/blog/mymoneylog/ ). Thanks to: Ricardo Nishimura
@@ -17,22 +17,12 @@ Current Travis Status:
 Installation
 ============
 
-Using pip:
+My scenario to make this work was to install myMoneyLog on my Synology device, and share that folder with my Windows workstations.
+Thats because me and my wife use the same database of myMoneyLog.
+In this same Synology box I am running Python, and opened access to external world for a specific port.
+Other possibility is to host this solution somewhere, and then achieve to sync "somewhere"/data.html file with your diskstation or single workstation.
 
-    pip install nose-mongoengine
+Running
+=======
 
-Configuration
-=====
-
-The plugin extends the nose options with a few options. The only
-required options are either ``--mongoengine`` or ``--mongoengine-mongodb-bin`` to enable
-the plugin.
-
- - ``--mongoengine`` is required to enable the plugin.
-
- - ``--mongoengine-mongodb-bin`` Allows specifying the path to the ``mongod`` binary.
-   If not specified the plugin will search the path for a mongodb
-   binary. If one is not found, an error will be raised.
-
-
-The plugin will up a instance of Mongo Db and create a empty database to use it.
+For a Synology Diskstation, its basically to call "nohup python main.py&"
