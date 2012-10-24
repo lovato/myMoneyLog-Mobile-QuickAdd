@@ -5,6 +5,7 @@ Created on 18/10/2012
 '''
 
 import shutil
+import os.path
 #import ConfigParser
 
 
@@ -85,8 +86,9 @@ class Transactor:
         return "removed"
 
     def _count_lines(self):
+        if not os.path.exists(self.datafile):
+            open(self.datafile, 'w').close()
         self.datafile_size = sum(1 for line in open(self.datafile))
-
 
 class MML_parser:
     _favorecidos = []
