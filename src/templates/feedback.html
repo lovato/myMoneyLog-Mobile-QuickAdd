@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>myMoneyLog QuickAdd</title>
+    <!-- Bootstrap -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/bootstrap/js/bootbox.min.js"></script>
+
+	<script>
+	var box = bootbox.alert("{{ feedback_message }}");
+    setTimeout(function() {
+        box.modal('hide');
+    }, 2000);
+    setTimeout(function() {
+        document.location.href="/"
+    }, 2500);
+	</script>
+
+  </body>
+</html>

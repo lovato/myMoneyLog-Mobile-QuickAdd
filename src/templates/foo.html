@@ -1,0 +1,7 @@
+{{ salutation }}
+<ul id="navigation">
+{% for item in navigation %}
+    <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+{% endfor %}
+<img src="/static/bootstrap/img/glyphicons-halflings.png">
+</ul>

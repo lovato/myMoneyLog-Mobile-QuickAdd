@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>myMoneyLog QuickAdd</title>
+    <!-- Bootstrap -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/datepicker.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+ 
+<div class="page-header">
+  <h1>myMoneyLog QuickAdd</h1>
+</div>
+ 
+<form class="form-horizontal" method="get" action="/add">  
+        <fieldset>  
+          <div class="control-group">  
+            <label class="control-label" for="dateinput01">Data</label>  
+            <div class="controls">  
+              <input type="text" class="input-xlarge" id="dateinput01" name="date">  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="input01">Valor</label>  
+            <div class="controls">  
+              <input type="text" class="input-xlarge" id="input01" name="value">  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="optionsCheckbox">Tipo</label>  
+			<div class="btn-group controls pull-left" style="margin-left: 20px;" data-toggle="buttons-radio" onChange="alert(1);">
+			  <button type="button" id="btnDebito" class="btn">Débito</button>
+			  <button type="button" id="btnCredito" class="btn">Crédito</button>
+			</div>
+			<div  class="btn-group controls pull-left">
+			  <button type="button" class="btn" id="btnPending" data-toggle="buttons-radio">Pendente?</button>
+			</div>
+          </div>  
+			  <input type="hidden" name="transaction_type" id="transaction_type" value="minus">
+			  <input type="hidden" name="transaction_pending" id="transaction_pending" value="no">
+          <div class="control-group">  
+            <label class="control-label" for="input01">Favorecido</label>  
+            <div class="controls">  
+              <input type="text" class="input-xlarge" id="description" name="description">  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="select01"">Conta</label>  
+            <div class="controls">  
+              <select id="select01" name="account">  
+    {% for account in accounts %}
+                <option>{{ account }}</option>  
+    {% endfor %}
+              </select>  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="select01">Tag</label>  
+            <div class="controls">  
+              <select id="select01" name="tags">  
+    {% for categ in categories %}
+                <option>{{ categ }}</option>  
+    {% endfor %}
+              </select>  
+            </div>  
+          </div>  
+          <div class="form-actions">  
+            <button type="submit" class="btn btn-primary">Salvar</button>  
+            <button class="btn">Limpar</button>  
+          </div>  
+        </fieldset>  
+</form>    
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-datepicker.js"></script>
+	<script src="/static/bootstrap/js/bootbox.min.js"></script>
+<script>
+		$(function(){
+			$('#dateinput01').datepicker({
+				format: 'yyyy-mm-dd'
+			});
+			$('#dateinput01').datepicker('setValue', new Date())
+			$('#btnDebito').button('toggle')
+		})
+
+		$("#btnDebito").click( function() {
+		  // check input ($(this).val()) for validity here
+		  $('input[name=transaction_type]').val("minus");
+		});	
+	
+		$("#btnCredito").click( function() {
+			  // check input ($(this).val()) for validity here
+		  $('input[name=transaction_type]').val("plus");
+		});	
+		
+		$("#btnPending").click( function() {
+			  // check input ($(this).val()) for validity here
+			if ($('input[name=transaction_pending]').val() == "no") {
+				$('input[name=transaction_pending]').val("yes");
+			} else {
+				$('input[name=transaction_pending]').val("no");
+			}
+		});	
+		
+		
+</script>
+
+  </body>
+</html>
