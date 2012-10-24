@@ -21,9 +21,16 @@ class SimpleTestCase(unittest.TestCase):
         pass
 
     def test_add_transaction(self):
-        transaction = Transaction('2012-10-23', '0,01',  'Terra', 'gasolina', 'ticket',  'minus', 'yes').get_formatted()
-        self.foo.append_transaction(transaction)
-        assert self.foo.get_last_transaction() == transaction
+        transaction = Transaction('2012-10-23', '2,01', 'Terra', 'gasolina', 'ticket', 'minus', 'yes').get_formatted()
+        old_line_count = self.foo.datafile_size + 1
+        result = self.foo.append_transaction(transaction)
+        if result == False:
+            print "Problem adding transaction"
+        new_line_count = self.foo.datafile_size
+        test1 = old_line_count == new_line_count
+        test2 = self.foo.get_last_transaction()[:-1] == transaction
+
+        assert (test1 and test2)
 
 if __name__ == "__main__":
     # run all tests
