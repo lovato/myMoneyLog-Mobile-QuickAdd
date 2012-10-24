@@ -37,7 +37,7 @@ class Transaction:
             self.pending = "?"
 
     def get_formatted(self):
-        return self.date + self.pending + "\t" + self.pending + self.value + "\t" + self.description + "\t" + self.tags + "\t" + self.account
+        return self.date + self.pending + "\t" + self.type + self.value + "\t" + self.description + "\t" + self.tags + "\t" + self.account
 
 
 class Transactor:
@@ -59,7 +59,7 @@ class Transactor:
         import os
         self.last_transaction = newline
 
-        shutil.copy(self.datafile , self.datafile + '.tmp')
+        shutil.copy(self.datafile, self.datafile + '.tmp')
         with open(self.datafile + '.tmp') as infile:
             with open(self.datafile, "w") as outfile:
                 for i, line in enumerate(infile):
@@ -67,10 +67,16 @@ class Transactor:
                         outfile.write(newline + "\n")
                     outfile.write(line)
             #shutil.move(self.datafile + '.new', self.datafile)
+            infile.close()
+            outfile.close()
             try:
                 os.remove(self.datafile + '.tmp')
-            except:
-                pass
+            except Exception as e:
+                print e
+                return False
+        self._count_lines()
+        infile.close()
+        outfile.close()
         return True
 
 #    def append_transaction(self, line):
@@ -80,6 +86,11 @@ class Transactor:
 #        return True
 
     def get_last_transaction(self):
+        with open(self.datafile, "r") as infile:
+            for i, line in enumerate(infile):
+                if i == self.datafile_size - 2:
+                    self.last_transaction = line
+        infile.close()
         return self.last_transaction
 
     def remove_last_transaction(self):
@@ -87,8 +98,11 @@ class Transactor:
 
     def _count_lines(self):
         if not os.path.exists(self.datafile):
-            open(self.datafile, 'w').close()
-        self.datafile_size = sum(1 for line in open(self.datafile))
+            with open(self.datafile, 'w') as outfile:
+                outfile.write('<html>\n</html>')
+                outfile.close()
+        self.datafile_size = sum(1 for line in open(self.datafile, 'r'))
+        return self.datafile_size
 
 class MML_parser:
     _favorecidos = []
