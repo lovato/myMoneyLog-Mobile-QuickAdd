@@ -36,7 +36,7 @@ class Transaction:
             self.pending = "?"
 
     def get_formatted(self):
-        return self.date + self.pending + "\t" + self.pending + self.value + "\t" + self.description + "\t" + self.tags + "\t" + self.account + "\t"
+        return self.date + self.pending + "\t" + self.pending + self.value + "\t" + self.description + "\t" + self.tags + "\t" + self.account
 
 
 class Transactor:
@@ -58,15 +58,18 @@ class Transactor:
         import os
         self.last_transaction = newline
 
-        shutil.copy(self.datafile , self.datafile + '.new')
-        with open(self.datafile + '.new') as infile:
+        shutil.copy(self.datafile , self.datafile + '.tmp')
+        with open(self.datafile + '.tmp') as infile:
             with open(self.datafile, "w") as outfile:
                 for i, line in enumerate(infile):
                     if i == self.datafile_size - 1:
                         outfile.write(newline + "\n")
                     outfile.write(line)
             #shutil.move(self.datafile + '.new', self.datafile)
-            os.remove(self.datafile + '.new')
+            try:
+                os.remove(self.datafile + '.tmp')
+            except:
+                pass
         return True
 
 #    def append_transaction(self, line):
