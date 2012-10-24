@@ -5,8 +5,8 @@ Created on 18/10/2012
 '''
 #pylint: disable-msg=C0103,R0904
 import unittest
-from mml_datafile_helper import *
-from main import *
+from mml_datafile_helper import Transactor, Transaction
+from main import get_mml_folder
 
 
 class SimpleTestCase(unittest.TestCase):
