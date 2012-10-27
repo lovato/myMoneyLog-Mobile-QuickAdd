@@ -26,7 +26,8 @@ class Root(object):
         '''
         tmpl = ENV.get_template('root.html')
         mml = Mmlparser(os.path.join(get_mml_folder(), 'data.html'))
-        return tmpl.render(accounts=mml.get_accounts(),
+        return tmpl.render(favs=mml.get_favorecidos(),
+                           accounts=mml.get_accounts(),
                            categories=mml.get_categories())
     index.exposed = True
 
@@ -65,7 +66,7 @@ class UserFeedback(object):
         index
         '''
         tmpl = ENV.get_template('feedback.html')
-        return tmpl.render(feedback_message = "Trasa&ccedil;&atilde;o adicionada")
+        return tmpl.render(feedback_message = "Transa&ccedil;&atilde;o adicionada")
     index.exposed = True
 
 
