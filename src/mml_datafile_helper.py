@@ -6,6 +6,7 @@ Created on 18/10/2012
 #pylint: disable-msg=R0903,R0201
 import shutil
 import os.path
+import re
 
 
 class Transaction:
@@ -115,7 +116,7 @@ class Transactor:
         '''
         remove_last_transaction
         '''
-        return "removed"
+        return False
 
     def _count_lines(self):
         '''
@@ -147,29 +148,46 @@ class Mmlparser:
         with open(self._datafile) as infile:
             self._file_data = infile.readlines()
 
-    def _parse_favorecidos(self):
-        '''
-        _parse_favorecidos
-        '''
-        self._favorecidos = None
 
-    def _parse_accounts_categories(self):
+    # def _parse_datafile(self):
+    #     '''
+    #     _parse_favorecidos
+    #     '''
+    #     self._categories = []
+    #     self._accounts = []
+    #     for line in self._file_data:
+    #         if 'valor inicial\t' in line:
+    #             valid_data_array = line.split('valor inicial\t')
+    #             valid_data = valid_data_array[1]
+    #             valid_data = valid_data[:-1]
+    #             if valid_data.startswith("\t"):
+    #                 valid_data = valid_data[1:]
+    #                 self._accounts.append(valid_data)
+    #             if valid_data.endswith("\t"):
+    #                 valid_data = valid_data[:-1]
+    #                 self._categories.append(valid_data)
+    #         else:
+    #             self._favorecidos.append(line)
+
+    def _parse_datafile(self):
         '''
         _parse_favorecidos
         '''
         self._categories = []
         self._accounts = []
         for line in self._file_data:
-            if 'valor inicial\t' in line:
-                valid_data_array = line.split('valor inicial\t')
-                valid_data = valid_data_array[1]
-                valid_data = valid_data[:-1]
-                if valid_data.startswith("\t"):
-                    valid_data = valid_data[1:]
-                    self._accounts.append(valid_data)
-                if valid_data.endswith("\t"):
-                    valid_data = valid_data[:-1]
-                    self._categories.append(valid_data)
+            if '\t' in line:
+                line_elements = line.split('\t')
+                if line_elements[2] == 'valor inicial':
+                    if line_elements[3] == '':
+                        self._accounts.append(line_elements[4][:-1])  # just to remove trailing n\
+                    else:
+                        self._categories.append(line_elements[3])
+                else:
+                    self._favorecidos.append(line_elements[2])
+        self._accounts = set(self._accounts)
+        self._categories = set(self._categories)
+        self._favorecidos = set(self._favorecidos)
 
     def __init__(self, datafile):
         '''
@@ -177,8 +195,16 @@ class Mmlparser:
         '''
         self._datafile = datafile
         self._load_file_data()
-        self._parse_accounts_categories()
-        self._parse_favorecidos()
+        self._parse_datafile()
+        self._fix_favorecidos()
+
+    def _fix_favorecidos(self):
+        _favorecidos = []
+        for item in self._favorecidos:
+            parsed_item = re.sub(r' \d+/\d+$', r'', item)
+            parsed_item = parsed_item.split('-')[0].strip()
+            _favorecidos.append(parsed_item)
+        self._favorecidos = set(_favorecidos)
 
     def get_favorecidos(self):
         '''
@@ -200,6 +226,8 @@ class Mmlparser:
 
 
 if __name__ == "__main__":
-    MMLP = Mmlparser(r'U:\Marco\mymoneylog\data.html')
+#    MMLP = Mmlparser(r'U:\Marco\mymoneylog\data.html')
+    MMLP = Mmlparser(r'C:\Users\user\Dropbox\mymoneylog\data.html')
     print MMLP.get_accounts()
     print MMLP.get_categories()
+    print MMLP.get_favorecidos()
