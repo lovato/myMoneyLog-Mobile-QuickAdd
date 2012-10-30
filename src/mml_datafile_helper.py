@@ -226,8 +226,8 @@ class Mmlparser:
 
 
 if __name__ == "__main__":
-#    MMLP = Mmlparser(r'U:\Marco\mymoneylog\data.html')
-    MMLP = Mmlparser(r'C:\Users\user\Dropbox\mymoneylog\data.html')
+    MMLP = Mmlparser(r'U:\Marco\mymoneylog\data.html')
+#    MMLP = Mmlparser(r'C:\Users\user\Dropbox\mymoneylog\data.html')
     print MMLP.get_accounts()
     print MMLP.get_categories()
     print MMLP.get_favorecidos()
