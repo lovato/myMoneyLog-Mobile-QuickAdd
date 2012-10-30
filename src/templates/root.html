@@ -129,10 +129,9 @@ function validateKeyPress(id,charCode) {
 <form class="form-horizontal" method="get" action="/add" accept-charset="utf-8">  
         <fieldset>  
           <div class="control-group">  
-            <label class="control-label" for="dateinput01">Data</label>  
-            <div class="controls controls-row">  
-              <input type="text" class="input" style="width:102px;" id="dateinput01" name="date">  
-			  <button type="button" class="btn" style="width:134px;" id="btnPending" data-toggle="buttons-radio">Pendente?</button>
+            <label class="control-label" for="input01">Favorecido</label>  
+            <div class="controls">  
+              <input type="text" placeholder="Digite para autocomplete" autocomplete="off" class="input-large" id="description" name="description" data-items="4" data-provide="typeahead" data-source='[{% for fav in favs %}"{{ fav }}",{% endfor %}""]'>  
             </div>  
           </div>  
           <div class="control-group">  
@@ -149,12 +148,6 @@ function validateKeyPress(id,charCode) {
           </div>  
 		  <input type="hidden" name="transaction_type" id="transaction_type" value="minus">
 		  <input type="hidden" name="transaction_pending" id="transaction_pending" value="no">
-          <div class="control-group">  
-            <label class="control-label" for="input01">Favorecido</label>  
-            <div class="controls">  
-              <input type="text" placeholder="Digite para autocomplete" autocomplete="off" class="input-large" id="description" name="description" data-items="4" data-provide="typeahead" data-source='[{% for fav in favs %}"{{ fav }}",{% endfor %}""]'>  
-            </div>  
-          </div>  
           <div class="control-group">  
             <label class="control-label" for="select01"">Conta</label>  
             <div class="controls">  
@@ -173,6 +166,13 @@ function validateKeyPress(id,charCode) {
                 <option>{{ categ }}</option>  
     {% endfor %}
               </select>  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="dateinput01">Data</label>  
+            <div class="controls controls-row">  
+              <input type="text" class="input" style="width:102px;" id="dateinput01" name="date">  
+			  <button type="button" class="btn" style="width:134px;" id="btnPending" data-toggle="buttons-radio">Pendente?</button>
             </div>  
           </div>  
           <div class="form-actions">  
