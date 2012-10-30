@@ -3,4 +3,4 @@ python:
   - "2.6"
   - "2.7"
 script: cd src
-script: runtests.sh
+script: ./runtests.sh
