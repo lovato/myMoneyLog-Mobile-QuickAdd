@@ -3,4 +3,4 @@ python:
   - "2.6"
   - "2.7"
 script: cd src
-script: python -m unittest discover -s tests
+script: runtests.sh
