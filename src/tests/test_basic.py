@@ -20,7 +20,7 @@ class SimpleTestCase(unittest.TestCase):
         '''
         """Call before every test case."""
         '''
-        self.transactor.set_mml_folder(get_mml_folder())
+        self.transactor.set_mml_folder('.')
         self.transactor.set_datafile('data-tests.html')
 
     def tearDown(self):
