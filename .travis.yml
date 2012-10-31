@@ -2,5 +2,4 @@ language: python
 python:
   - "2.6"
   - "2.7"
-script: cd src
-script: sh ./runtests.sh
+script: nosetests
