@@ -37,7 +37,7 @@ class AddEntry(object):
     AddEntry
     '''
     def index(self, date=None, account=None, description=None, value=None,
-              tags=None, transaction_type=None, transaction_pending=None):
+              tags1=None, tags2=None, transaction_type=None, transaction_pending=None):
         '''
         @param date:
         @param account:
@@ -47,6 +47,11 @@ class AddEntry(object):
         @param transaction_type:
         @param transaction_pending:
         '''
+
+        tags = tags1
+        if tags2 != None:
+            tags = tags + '; '+tags2
+
         transaction = Transaction(date, value, description, tags, account,
                                   transaction_type, transaction_pending)
         transactor = Transactor()

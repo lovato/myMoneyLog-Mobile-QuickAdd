@@ -159,9 +159,17 @@ function validateKeyPress(id,charCode) {
             </div>  
           </div>  
           <div class="control-group">  
-            <label class="control-label" for="select01">Tag</label>  
+            <label class="control-label" for="select01">Tags</label>  
+            <div class="controls" style="float:left; margin-left:20px;">  
+              <select id="select01" style="width:126px;"  name="tags1">  
+    {% for categ in categories %}
+                <option>{{ categ }}</option>  
+    {% endfor %}
+              </select>  
+            </div>  
             <div class="controls">  
-              <select id="select01" name="tags">  
+              <select id="select02" style="margin-left:3px; width:125px;" name="tags2">  
+              <option></option> 
     {% for categ in categories %}
                 <option>{{ categ }}</option>  
     {% endfor %}
@@ -171,8 +179,8 @@ function validateKeyPress(id,charCode) {
           <div class="control-group">  
             <label class="control-label" for="dateinput01">Data</label>  
             <div class="controls controls-row">  
-              <input type="text" class="input" style="width:102px;" id="dateinput01" name="date">  
-			  <button type="button" class="btn" style="width:134px;" id="btnPending" data-toggle="buttons-radio">Pendente?</button>
+              <input type="text" class="input" style="width:112px;" id="dateinput01" name="date">  
+			  <button type="button" class="btn" style="width:125px;" id="btnPending" data-toggle="buttons-radio">Pendente?</button>
             </div>  
           </div>  
           <div class="form-actions">  
